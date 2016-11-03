@@ -1,26 +1,20 @@
 
 def printGrid(sideLen, numBoxes):
+    if sideLen <= 0: return None
+    if numBoxes <= 0: return None
+
     numVertices = numBoxes + 1
+    print(getRow(
+        numVertices,
+        getRow(numVertices, '* ', sideLen, '- '),
+        sideLen,
+        getRow(numVertices, '| ', sideLen, '  ')))
 
-    for x in range(numVertices):
-        # print the top
-        printSide(sideLen, numVertices)
-
-        if x < numVertices - 1:
-            row = ''
-            for i in range(numVertices):
-                row += '| '
-                for j in range(sideLen):
-                    row += ' ' * 2
-            print row
-
-def printSide(sideLen, numVertices):
+def getRow(numVertices, vertexChar, numNonVertices, nonVertexChar):
     row = ''
-
     for i in range(numVertices):
-        row += '* '
+        row += vertexChar 
         if i < numVertices - 1:
-            for j in range(sideLen):
-                row += '- '
-    print row
-
+            for j in range(numNonVertices):
+                row += nonVertexChar
+    return row + '\n'
