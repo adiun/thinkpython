@@ -1,28 +1,20 @@
 
-def printGrid(sideLen, numBoxes):
-    if sideLen <= 0: return None
-    if numBoxes <= 0: return None
-
+def printGrid(charsPerEdge, numBoxes):
+    if charsPerEdge <= 0 or numBoxes <= 0: return None
     numVertices = numBoxes + 1
-    print(getRow(
+    print(drawVerticesAndEdges(
         numVertices,
-        getRow(numVertices, '* ', sideLen, '- '),
-        sideLen,
-        getRow(numVertices, '| ', sideLen, '  ')))
+        drawVerticesAndEdges(numVertices, '* ', charsPerEdge, '- '),
+        charsPerEdge,
+        drawVerticesAndEdges(numVertices, '| ', charsPerEdge, '  ')))
 
-def getRow(numVertices, vertexChar, numNonVertices, nonVertexChar):
+def drawVerticesAndEdges(numVertices, vertexChar, numCharsPerEdge, nonVertexChar):
     row = ''
-    # If there are n vertices and m non-vertices then there will be n * m + 1 chars (+1 for the last vertex)
-    # n = 3, m = 2
-    # 1 2 3 4 5 6 7
-    # * - - * - - *
-    totalChars = numVertices * numNonVertices + 1
+    # If n vertices and m chars per edge then there will be n * m + 1 chars (+1 for the last vertex)
+    totalChars = numVertices * numCharsPerEdge + 1
     for i in range(totalChars):
-        if i == totalChars - 1:
+        if (i == totalChars - 1) or (i % numVertices == 0): 
             row += vertexChar
-        elif i % numVertices == 0:
-            row += vertexChar
-        else:
+        else: 
             row += nonVertexChar
-
     return row + '\n'
