@@ -1,6 +1,4 @@
 
-# Performance: O(n^2)
-
 def printGrid(sideLen, numBoxes):
     if sideLen <= 0: return None
     if numBoxes <= 0: return None
